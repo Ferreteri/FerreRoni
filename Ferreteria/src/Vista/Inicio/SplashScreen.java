@@ -30,12 +30,12 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         initComponents();
         
-        AWTUtilities.setWindowOpaque(this, false);
-        //setUndecorated(false); 
-        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
-        this.setLocationRelativeTo(null);
-        this.progreso.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        startThread();
+          AWTUtilities.setWindowOpaque(this, false);
+//        //setUndecorated(false); 
+          this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+          this.setLocationRelativeTo(null);
+          this.progresoRound.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+          startThread();
         
     }
     void startThread() 
@@ -53,7 +53,7 @@ public class SplashScreen extends javax.swing.JFrame {
     }
      public JProgressBar getJProgressBar() 
      {
-        return progreso;
+        return progresoRound;
      }
 
     public JLabel getJLabel() 
@@ -75,20 +75,31 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        progreso = new javax.swing.JProgressBar();
         texto = new javax.swing.JLabel();
+        progresoRound = new org.edisoncor.gui.progressBar.ProgressBarRound();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 520));
+        setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(null);
-        getContentPane().add(progreso);
-        progreso.setBounds(0, 280, 480, 14);
 
         texto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         texto.setForeground(new java.awt.Color(102, 204, 255));
         texto.setText("jLabel2");
         getContentPane().add(texto);
-        texto.setBounds(10, 240, 220, 40);
+        texto.setBounds(10, 270, 390, 40);
+
+        progresoRound.setForeground(new java.awt.Color(0, 102, 153));
+        getContentPane().add(progresoRound);
+        progresoRound.setBounds(0, 320, 830, 14);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/splash2.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 830, 330);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,7 +140,8 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JProgressBar progreso;
+    private javax.swing.JLabel jLabel1;
+    private org.edisoncor.gui.progressBar.ProgressBarRound progresoRound;
     private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }

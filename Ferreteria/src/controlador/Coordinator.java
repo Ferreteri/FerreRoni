@@ -6,6 +6,7 @@
 package controlador;
 
 import Modelo.Logica;
+import Modelo.LogicaLogin;
 import Modelo.DAO.UsuariosDAO;
 import Modelo.VO.UsuariosVO;
 import Vista.Inicio.SplashScreen;
@@ -19,6 +20,7 @@ import Vista.MenuPrincipal.MenuPrincipal;
 public class Coordinator {
  
         private Logica miLogica;
+        private LogicaLogin miLogicaLogin;
 	private SplashScreen frmSplashScreen;
 
     public Logica getMiLogica() {
@@ -36,6 +38,13 @@ public class Coordinator {
     public void setFrmSplashScreen(SplashScreen frmSplashScreen) {
         this.frmSplashScreen = frmSplashScreen;
     }
-        
+    
+    
+    //////////////////////////////////////////////
+ 
+    
+        public UsuariosVO LoginUsuario(String nombre,String contrasena) {
+		return miLogicaLogin.InicioLogin(nombre,contrasena);
+	}
       
 }

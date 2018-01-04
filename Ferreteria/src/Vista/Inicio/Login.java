@@ -6,6 +6,13 @@
 package Vista.Inicio;
 
 
+import Modelo.Logica;
+import Modelo.LogicaLogin;
+import Modelo.VO.UsuariosVO;
+import controlador.Coordinator;
+
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -15,6 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     SplashScreen inicio;
+    
+    
+    private Coordinator ClassCoordinador; //objeto miCoordinador que permite la relacion entre esta clase y la clase coordinador
+    
+    
     /**
      * Creates new form Login
      */
@@ -28,7 +40,8 @@ public class Login extends javax.swing.JFrame {
         this.setTitle("ACCESO - SISTEMA FERRETERIA");
     }
     
-    public Login(SplashScreen inicio) {
+    public Login(SplashScreen inicio)
+    {
         this.inicio = inicio;
         setProgress(0, "Cargando Componentes del Sistema");
         initComponents();
@@ -59,6 +72,10 @@ public class Login extends javax.swing.JFrame {
     
    
     
+    public void setCoordinador(Coordinator ClassCoordinador) {
+		this.ClassCoordinador=ClassCoordinador;
+	}
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,18 +87,39 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JPasswordField();
         btnentrar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
+        labelMetric3 = new org.edisoncor.gui.label.LabelMetric();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("Nombre de Usuario");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Usuario:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 160, 80, 17);
 
-        jLabel2.setText("Contraseña");
+        usuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usuarioKeyReleased(evt);
+            }
+        });
+        getContentPane().add(usuario);
+        usuario.setBounds(60, 200, 240, 23);
+
+        contraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(contraseña);
+        contraseña.setBounds(60, 270, 240, 23);
 
         btnentrar.setText("Aceptar");
         btnentrar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +127,8 @@ public class Login extends javax.swing.JFrame {
                 btnentrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnentrar);
+        btnentrar.setBounds(220, 310, 80, 40);
 
         btnsalir.setText("Cancelar");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -96,43 +136,25 @@ public class Login extends javax.swing.JFrame {
                 btnsalirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnsalir);
+        btnsalir.setBounds(60, 310, 80, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(btnentrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addComponent(btnsalir)
-                .addGap(65, 65, 65))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(usuario)
-                    .addComponent(contraseña))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnentrar)
-                    .addComponent(btnsalir))
-                .addGap(40, 40, 40))
-        );
+        labelMetric3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelMetric3.setText("¡¡¡ bienvenido a Ferre Rony !!!");
+        labelMetric3.setFont(new java.awt.Font("Showcard Gothic", 1, 24)); // NOI18N
+        getContentPane().add(labelMetric3);
+        labelMetric3.setBounds(20, 100, 360, 30);
+        labelMetric3.getAccessibleContext().setAccessibleName("¡¡¡ bienvenido a Ferre Roni !!!");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/Login.png"))); // NOI18N
+        jLabel2.setText("Contraseña");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 490, 145);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Contraseña:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(60, 240, 80, 17);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,9 +170,42 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Los campos son obligatorios", "Acceso", 0,
                     new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
         } else {
-         //   Ingresa(us, pas);
+         
+            
+            UsuariosVO Validate=ClassCoordinador.LoginUsuario(us,pas);
+			if (Validate!=null)
+			{
+				muestraPersona(Validate);
+			}
+//			else if(Logica.consultaPersona==true){
+//				JOptionPane.showMessageDialog(null, "La persona no Existe","Advertencia",JOptionPane.WARNING_MESSAGE);
+//			}
+                        
+            
+            
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnentrarActionPerformed
+
+    
+    
+    private void muestraPersona(UsuariosVO Validate) {
+		String nombrew= Validate.getNombre();
+	}
+    
+    
+    
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+     if (JOptionPane.showConfirmDialog(this, "Esta a punto de salir\nde la aplicación.\n¿Desea continuar?", "Cerrar", JOptionPane.YES_NO_OPTION, 0,
+                new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/adver1.png"))) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }else{
+            this.setDefaultCloseOperation(0);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void usuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioKeyReleased
+        usuario.setText(usuario.getText().toUpperCase());        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioKeyReleased
 
     /**
      * @param args the command line arguments
@@ -193,6 +248,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private org.edisoncor.gui.label.LabelMetric labelMetric3;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

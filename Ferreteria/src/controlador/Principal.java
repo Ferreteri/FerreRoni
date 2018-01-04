@@ -25,8 +25,10 @@ public class Principal {
         
         
      public static void main(String[] args) {
-         Principal CargaMenu=new Principal();
-		CargaMenu.iniciar();
+          //Temp
+         new SplashScreen().setVisible(true);
+//         Principal CargaMenu=new Principal();
+//		CargaMenu.iniciar();
      }
      
      
