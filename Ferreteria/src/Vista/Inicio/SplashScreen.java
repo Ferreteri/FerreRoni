@@ -7,6 +7,7 @@ package Vista.Inicio;
 
 
 import com.sun.awt.AWTUtilities;
+import controlador.Coordinator;
 import java.awt.Cursor;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,7 +19,7 @@ import javax.swing.JProgressBar;
  */
 public class SplashScreen extends javax.swing.JFrame {
 
-    
+    private Coordinator CLassCoordinador; //objeto miCoordinador que permite la relacion entre esta clase y la clase coordinador
     
      SplashScreen spl = this;
      
@@ -59,6 +60,11 @@ public class SplashScreen extends javax.swing.JFrame {
     {
         return texto;
     }
+    
+    
+    public void setCoordinador(Coordinator CLassCoordinador) {
+		this.CLassCoordinador=CLassCoordinador;
+	}
     
     /**
      * This method is called from within the constructor to initialize the form.

@@ -35,7 +35,11 @@ public class Principal {
 		frmSplashScreen=new SplashScreen();
                 
                 /*Se establecen las relaciones entre clases*/
-		
+		frmSplashScreen.setCoordinador(ClassCoordinator);
+                
+                
+                /*Se establecen relaciones con la clase coordinador*/
+		ClassCoordinator.setFrmSplashScreen(frmSplashScreen);
                 
 	}
 
