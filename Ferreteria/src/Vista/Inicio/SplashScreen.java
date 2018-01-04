@@ -5,19 +5,61 @@
  */
 package Vista.Inicio;
 
+
+import com.sun.awt.AWTUtilities;
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+
 /**
  *
  * @author sistema
  */
 public class SplashScreen extends javax.swing.JFrame {
 
+    
+    
+     SplashScreen spl = this;
+     
+     
     /**
      * Creates new form SplashScreen
      */
     public SplashScreen() {
         initComponents();
+        
+        AWTUtilities.setWindowOpaque(this, false);
+        //setUndecorated(false); 
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+        this.setLocationRelativeTo(null);
+        this.progreso.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        startThread();
+        
     }
+    void startThread() 
+    {
+        Thread hi = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Login ven = new Login(spl);
+                ven.setLocationRelativeTo(null);
+                ven.setVisible(true);
+                dispose();
+            }
+        });
+        hi.start();
+    }
+     public JProgressBar getJProgressBar() 
+     {
+        return progreso;
+     }
 
+    public JLabel getJLabel() 
+    {
+        return texto;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +69,26 @@ public class SplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        progreso = new javax.swing.JProgressBar();
+        texto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(null);
+        getContentPane().add(progreso);
+        progreso.setBounds(0, 280, 480, 14);
+
+        texto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        texto.setForeground(new java.awt.Color(102, 204, 255));
+        texto.setText("jLabel2");
+        getContentPane().add(texto);
+        texto.setBounds(10, 240, 220, 40);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/splashcreen.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-1, -4, 480, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +129,8 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JProgressBar progreso;
+    private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }

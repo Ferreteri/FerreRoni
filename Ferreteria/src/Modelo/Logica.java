@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import Modelo.DAO.UsuariosDAO;
+import Modelo.VO.UsuariosVO;
+import controlador.Coordinator;
 /**
  *
  * @author sistema

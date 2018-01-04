@@ -5,19 +5,66 @@
  */
 package Vista.Inicio;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sistema
  */
 public class Login extends javax.swing.JFrame {
-
+    SplashScreen inicio;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        
+        this.setSize(410, 500);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+        this.setTitle("ACCESO - SISTEMA FERRETERIA");
     }
+    
+    public Login(SplashScreen inicio) {
+        this.inicio = inicio;
+        setProgress(0, "Cargando Componentes del Sistema");
+        initComponents();
+        this.setSize(410, 500);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/SplashScreen/logo.png")).getImage());
+        this.setTitle("ACCESO - SISTEMA ENRAMADA FERRETERIA");
+        setProgress(20, "Conectandose a la Base de Datos...");
+        setProgress(40, "Cargando Modulos..");
+        setProgress(60, "Carga de Modulos Terminada");
+        setProgress(80, "Cargando Interfaces..");
+        setProgress(90, "Interfaces Cargadas");
+        setProgress(100, "Bienvenido al Sistema");
+        this.setLocationRelativeTo(null);
+    }
+    void setProgress(int percent, String information) 
+    {
+        inicio.getJLabel().setText(information);
+        inicio.getJProgressBar().setValue(percent);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo ejecutar la presentación");
+        }
+    }
+    
+   
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +74,87 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usuario = new javax.swing.JTextField();
+        contraseña = new javax.swing.JPasswordField();
+        btnentrar = new javax.swing.JButton();
+        btnsalir = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Nombre de Usuario");
+
+        jLabel2.setText("Contraseña");
+
+        btnentrar.setText("Aceptar");
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnentrarActionPerformed(evt);
+            }
+        });
+
+        btnsalir.setText("Cancelar");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(btnentrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(btnsalir)
+                .addGap(65, 65, 65))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(usuario)
+                    .addComponent(contraseña))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnentrar)
+                    .addComponent(btnsalir))
+                .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+    System.exit(0);         // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalirActionPerformed
+
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
+        String us = usuario.getText();
+        String pas = contraseña.getText();
+        if (us.equals("") || pas.equals("")) {
+            JOptionPane.showMessageDialog(this, "Los campos son obligatorios", "Acceso", 0,
+                    new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
+        } else {
+         //   Ingresa(us, pas);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +192,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnentrar;
+    private javax.swing.JButton btnsalir;
+    private javax.swing.JPasswordField contraseña;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
