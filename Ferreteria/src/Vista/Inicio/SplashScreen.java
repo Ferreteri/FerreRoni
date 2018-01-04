@@ -32,7 +32,7 @@ public class SplashScreen extends javax.swing.JFrame {
         
         AWTUtilities.setWindowOpaque(this, false);
         //setUndecorated(false); 
-//        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
         this.setLocationRelativeTo(null);
         this.progreso.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         startThread();
@@ -77,7 +77,6 @@ public class SplashScreen extends javax.swing.JFrame {
 
         progreso = new javax.swing.JProgressBar();
         texto = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -90,10 +89,6 @@ public class SplashScreen extends javax.swing.JFrame {
         texto.setText("jLabel2");
         getContentPane().add(texto);
         texto.setBounds(10, 240, 220, 40);
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-1, -4, 480, 300);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,7 +129,6 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JProgressBar progreso;
     private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables

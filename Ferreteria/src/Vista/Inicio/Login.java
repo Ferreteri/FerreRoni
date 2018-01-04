@@ -5,12 +5,7 @@
  */
 package Vista.Inicio;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -29,7 +24,7 @@ public class Login extends javax.swing.JFrame {
         this.setSize(410, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        //this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logoFerre.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logoFerre.png")).getImage());
         this.setTitle("ACCESO - SISTEMA FERRETERIA");
     }
     
@@ -40,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         this.setSize(410, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/SplashScreen/logo.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
         this.setTitle("ACCESO - SISTEMA ENRAMADA FERRETERIA");
         setProgress(20, "Conectandose a la Base de Datos...");
         setProgress(40, "Cargando Modulos..");
