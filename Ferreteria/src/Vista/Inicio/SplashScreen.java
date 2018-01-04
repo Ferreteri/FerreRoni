@@ -31,7 +31,7 @@ public class SplashScreen extends javax.swing.JFrame {
         
         AWTUtilities.setWindowOpaque(this, false);
         //setUndecorated(false); 
-        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+//        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
         this.setLocationRelativeTo(null);
         this.progreso.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         startThread();
@@ -85,7 +85,6 @@ public class SplashScreen extends javax.swing.JFrame {
         getContentPane().add(texto);
         texto.setBounds(10, 240, 220, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/splashcreen.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-1, -4, 480, 300);
