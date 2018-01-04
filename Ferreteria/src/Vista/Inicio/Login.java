@@ -29,7 +29,7 @@ public class Login extends javax.swing.JFrame {
         this.setSize(410, 500);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logo.png")).getImage());
+        //this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/logoFerre.png")).getImage());
         this.setTitle("ACCESO - SISTEMA FERRETERIA");
     }
     

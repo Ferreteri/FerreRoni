@@ -20,8 +20,22 @@ public class Coordinator {
  
         private Logica miLogica;
 	private SplashScreen frmSplashScreen;
+
+    public Logica getMiLogica() {
+        return miLogica;
+    }
+
+    public void setMiLogica(Logica miLogica) {
+        this.miLogica = miLogica;
+    }
+
+    public SplashScreen getFrmSplashScreen() {
+        return frmSplashScreen;
+    }
+
+    public void setFrmSplashScreen(SplashScreen frmSplashScreen) {
+        this.frmSplashScreen = frmSplashScreen;
+    }
         
-        public SplashScreen getfrmSplashScreen() {
-		return frmSplashScreen;
-        }
+      
 }

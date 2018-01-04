@@ -17,23 +17,27 @@ import Vista.MenuPrincipal.MenuPrincipal;
 public class Principal {
     
     
-//     Logica miLogica;
-//	SplashScreen frmSplashScreen;
-//	Login frmLogin;
-//	MenuPrincipal frmMenuPrincipal;
-//	Coordinator ClassCoordinator;
-//        
-//        
-//     public static void main(String[] args) {
-//         Principal CargaMenu=new Principal();
-//		CargaMenu.iniciar();
-//     }
-//     
-//     
-//     private void iniciar() {
-//		/*Se instancian las clases*/
-//		frmSplashScreen=new SplashScreen();
-//	}
+     Logica miLogica;
+	SplashScreen frmSplashScreen;
+	Login frmLogin;
+	MenuPrincipal frmMenuPrincipal;
+	Coordinator ClassCoordinator;
+        
+        
+     public static void main(String[] args) {
+         Principal CargaMenu=new Principal();
+		CargaMenu.iniciar();
+     }
+     
+     
+     private void iniciar() {
+		/*Se instancian las clases*/
+		frmSplashScreen=new SplashScreen();
+                
+                /*Se establecen las relaciones entre clases*/
+		
+                
+	}
 
      
 }
