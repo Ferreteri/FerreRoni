@@ -8,7 +8,7 @@ package Modelo.DAO;
 
 import Modelo.Conexion.Conexion;
 import Modelo.VO.UsuariosVO;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,7 +62,7 @@ public class UsuariosDAO
 				Usuarios.setApellidoP(res.getString("ApellidoP"));
                                 Usuarios.setApellidoM(res.getString("ApellidoM"));
                                 Usuarios.setEdad(Integer.parseInt(res.getString("Edad")));
-                                Usuarios.setFechaRegistro(Date.valueOf(res.getString("FechaRegistro")));
+                                //Usuarios.setFechaRegistro(Date.valueOf(res.getString("FechaRegistro")));
                                 Usuarios.setActivo(Boolean.valueOf(res.getString("Activo")));
                                 Usuarios.setIdTipoUsuarioFK(Integer.parseInt(res.getString("IdTipoUsuarioFK")));
 			 }
@@ -96,7 +96,7 @@ public class UsuariosDAO
             estatuto.setString(5,UsuarioUpdate.getApellidoP());
             estatuto.setString(6, UsuarioUpdate.getApellidoM());
             estatuto.setInt(7, UsuarioUpdate.getEdad());
-            estatuto.setDate(8, UsuarioUpdate.getFechaRegistro());
+            //estatuto.setDate(8, UsuarioUpdate.getFechaRegistro());
             estatuto.setBoolean(9, UsuarioUpdate.getActivo());
             estatuto.setInt(10, UsuarioUpdate.getIdTipoUsuarioFK());
             estatuto.executeUpdate();

@@ -7,10 +7,13 @@ package Modelo.DAO;
 
 import Modelo.Conexion.Conexion;
 import Modelo.VO.UsuariosVO;
-import java.sql.Date;
+import Utilerias.convertformato;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +30,7 @@ public class LoginDAO {
 		boolean existe=false;
 		try {//IdUsuarioPK, Usuario, Contrasena, Nombre, ApellidoP, ApellidoM, Edad, FechaRegistro, Activo,IdTipoUsuarioFK
 			//Statement estatuto = conex.getConnection().createStatement();
-			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM Usuarios where Usuario = '?' AND Contrasena='?' ");
+			PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM Usuarios where Usuario = ? AND Contrasena=? ");
 			consulta.setString(1, Usuario);
                         consulta.setString(2, Contrasena);
 			ResultSet res = consulta.executeQuery();
@@ -40,9 +43,9 @@ public class LoginDAO {
 				Usuarios.setApellidoP(res.getString("ApellidoP"));
                                 Usuarios.setApellidoM(res.getString("ApellidoM"));
                                 Usuarios.setEdad(Integer.parseInt(res.getString("Edad")));
-                                Usuarios.setFechaRegistro(Date.valueOf(res.getString("FechaRegistro")));
-                                Usuarios.setActivo(Boolean.valueOf(res.getString("Activo")));
-                                Usuarios.setIdTipoUsuarioFK(Integer.parseInt(res.getString("IdTipoUsuarioFK")));
+                                Usuarios.setFechaRegistro(res.getDate("FechaRegistro"));
+                                Usuarios.setActivo(res.getBoolean("Activo"));
+                                Usuarios.setIdTipoUsuarioFK(res.getInt("IdTipoUsuarioFK"));
 			 }
 			res.close();
 			conex.desconectar();

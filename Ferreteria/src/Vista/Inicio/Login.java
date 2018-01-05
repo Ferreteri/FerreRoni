@@ -6,9 +6,9 @@
 package Vista.Inicio;
 
 
-import Modelo.Logica;
 import Modelo.LogicaLogin;
 import Modelo.VO.UsuariosVO;
+import Vista.MenuPrincipal.MenuPrincipal;
 import controlador.Coordinator;
 
 
@@ -168,19 +168,40 @@ public class Login extends javax.swing.JFrame {
         String pas = contraseña.getText();
         if (us.equals("") || pas.equals("")) {
             JOptionPane.showMessageDialog(this, "Los campos son obligatorios", "Acceso", 0,
-                    new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
+                    new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/info.png")));
         } else {
          
             
-            UsuariosVO Validate=ClassCoordinador.LoginUsuario(us,pas);
-			if (Validate!=null)
-			{
-				muestraPersona(Validate);
-			}
-//			else if(Logica.consultaPersona==true){
-//				JOptionPane.showMessageDialog(null, "La persona no Existe","Advertencia",JOptionPane.WARNING_MESSAGE);
-//			}
-                        
+            LogicaLogin ob =new LogicaLogin();
+                 
+            
+            UsuariosVO Validate= ob.InicioLogin(us, pas);
+            
+            try {
+                 if(Validate.getActivo())
+                 {
+                         dispose();
+                        MenuPrincipal mp = new MenuPrincipal();
+                        JOptionPane.showMessageDialog(this, "BIENVENIDO: " + Validate.getNombre()+" "+Validate.getApellidoP(), "Administrador", 0,
+                                new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/Accept-Male-User.png")));
+                        //mp.userConect.setText(dato);
+                        mp.setVisible(true);
+                 }
+                 else
+                 {
+                   JOptionPane.showMessageDialog(this, "El usuario se encuentra dado de baja contacte al administrador", "Acceso", 0,
+                    new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/info.png")));
+                 }
+                 
+            } catch (Exception e) {
+                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Acceso", 0,
+                    new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/info.png")));
+            }
+            
+                
+                    
+
+            
             
             
         }        // TODO add your handling code here:
@@ -196,7 +217,7 @@ public class Login extends javax.swing.JFrame {
     
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
      if (JOptionPane.showConfirmDialog(this, "Esta a punto de salir\nde la aplicación.\n¿Desea continuar?", "Cerrar", JOptionPane.YES_NO_OPTION, 0,
-                new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/adver1.png"))) == JOptionPane.YES_OPTION) {
+                new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/adver32x32.png"))) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }else{
             this.setDefaultCloseOperation(0);

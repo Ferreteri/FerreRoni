@@ -42,9 +42,6 @@ public class Coordinator {
     
     //////////////////////////////////////////////
  
-    
-        public UsuariosVO LoginUsuario(String nombre,String contrasena) {
-		return miLogicaLogin.InicioLogin(nombre,contrasena);
-	}
+   
       
 }
