@@ -5,7 +5,9 @@
  */
 package Vista.MenuPrincipal;
 
+import Utilerias.EstatusInfo;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -23,6 +25,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setSize(640, 365);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+       
+        if(1==EstatusInfo.TipoUsuario.Administrador.ordinal()){
+          tipo.setText("ADMINISTRADOR");
+          
+        } else if(2==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
+            tipo.setText("Usuario");
+            
+        }
+
+        nombre.setEditable(false);
+        tipo.setEditable(false);
     }
 
     /**
@@ -37,10 +50,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        tipo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -48,17 +59,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         salir = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Bienvenido: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(166, 27, 107, 24);
+        jLabel1.setBounds(130, 20, 150, 24);
 
+        jButton1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButton1.setText("Registrar usuarios");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,27 +79,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(0, 220, 150, 25);
+        jButton1.setBounds(0, 220, 160, 26);
 
+        jButton2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButton2.setText("Registrar productos ");
         getContentPane().add(jButton2);
-        jButton2.setBounds(150, 220, 150, 25);
+        jButton2.setBounds(170, 220, 160, 25);
 
-        jButton3.setText("Eliminar usuarios/productos");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(300, 220, 210, 25);
-
+        jButton4.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButton4.setText("Hacer ventas ");
         getContentPane().add(jButton4);
-        jButton4.setBounds(510, 220, 120, 25);
+        jButton4.setBounds(340, 220, 130, 26);
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(291, 25, 80, 29);
-
-        jButton5.setText("Hacer compras ");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(150, 280, 150, 25);
+        tipo.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tipo);
+        tipo.setBounds(270, 20, 170, 29);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("version 1.0");
@@ -99,6 +111,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(30, 190, 34, 15);
 
+        salir.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         salir.setText("Salir ");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,11 +119,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(310, 280, 105, 25);
+        salir.setBounds(490, 220, 110, 26);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 0, 0);
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(620, 0, 10, 19);
+        jTextField4.setBounds(620, 0, 10, 0);
+
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nombre);
+        nombre.setBounds(440, 20, 201, 30);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/MenuPrincipal/menu.png"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -127,6 +148,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_tipoActionPerformed
+
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_nombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,18 +197,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField nombre;
     private javax.swing.JToggleButton salir;
+    private javax.swing.JTextField tipo;
     // End of variables declaration//GEN-END:variables
 }
