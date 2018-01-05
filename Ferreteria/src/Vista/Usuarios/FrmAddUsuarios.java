@@ -5,6 +5,10 @@
  */
 package Vista.Usuarios;
 
+import Modelo.VO.UsuariosVO;
+import Utilerias.convertformato;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sistema
@@ -28,42 +32,36 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        tipoUs = new org.bolivia.combo.SComboBoxBlue();
+        jRBActivo = new javax.swing.JRadioButton();
+        txttipousuario = new org.bolivia.combo.SComboBoxBlue();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        txtCancela = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
-        textField2 = new java.awt.TextField();
-        textField3 = new java.awt.TextField();
-        textField4 = new java.awt.TextField();
-        textField5 = new java.awt.TextField();
-        textField6 = new java.awt.TextField();
-        textField7 = new java.awt.TextField();
+        txtcontrasena = new javax.swing.JPasswordField();
+        txtApellidoM = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        txtApellidoP = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jRadioButton1.setText("Activo");
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(140, 220, 55, 23);
+        jRBActivo.setText("Activo /Inactivo");
+        getContentPane().add(jRBActivo);
+        jRBActivo.setBounds(100, 170, 160, 23);
 
-        jRadioButton2.setText("Inabilitar");
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(70, 220, 67, 23);
-
-        tipoUs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO USUARIO", "ADMINISTRADOR", "NORMAL" }));
-        tipoUs.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        getContentPane().add(tipoUs);
-        tipoUs.setBounds(261, 200, 183, 32);
+        txttipousuario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO USUARIO", "ADMINISTRADOR", "NORMAL" }));
+        txttipousuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        getContentPane().add(txttipousuario);
+        txttipousuario.setBounds(261, 200, 183, 32);
 
         jLabel1.setText("Usuario");
         getContentPane().add(jLabel1);
@@ -73,64 +71,98 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(210, 40, 56, 14);
 
-        jLabel3.setText("Nombre");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 80, 37, 14);
-
         jLabel4.setText("Nombre");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(50, 80, 37, 14);
 
         jLabel5.setText("Apellido Paterno");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 110, 78, 20);
+        jLabel5.setBounds(210, 80, 78, 20);
 
         jLabel6.setText("Apellido Materno");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(210, 110, 80, 14);
+        jLabel6.setBounds(60, 120, 80, 14);
 
-        jButton1.setText("Aceptar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(373, 311, 71, 23);
+        btnGuardar.setText("Aceptar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardar);
+        btnGuardar.setBounds(373, 311, 71, 23);
 
-        jButton2.setText("Cancelar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(271, 311, 75, 23);
+        txtCancela.setText("Cancelar");
+        txtCancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCancelaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtCancela);
+        txtCancela.setBounds(271, 311, 75, 23);
 
         jLabel7.setText("Edad");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(50, 160, 24, 14);
+        jLabel7.setBounds(240, 110, 24, 14);
 
-        textField1.setText("textField1");
-        getContentPane().add(textField1);
-        textField1.setBounds(94, 69, 60, 20);
+        txtcontrasena.setText("jPasswordField1");
+        getContentPane().add(txtcontrasena);
+        txtcontrasena.setBounds(290, 40, 100, 20);
 
-        textField2.setText("textField1");
-        getContentPane().add(textField2);
-        textField2.setBounds(94, 39, 60, 20);
+        txtApellidoM.setText("jTextField1");
+        getContentPane().add(txtApellidoM);
+        txtApellidoM.setBounds(160, 110, 59, 20);
 
-        textField3.setText("textField1");
-        getContentPane().add(textField3);
-        textField3.setBounds(310, 40, 60, 20);
+        txtNombre.setText("jTextField1");
+        getContentPane().add(txtNombre);
+        txtNombre.setBounds(130, 80, 59, 20);
 
-        textField4.setText("textField1");
-        getContentPane().add(textField4);
-        textField4.setBounds(100, 160, 60, 20);
+        txtUsuario.setText("jTextField1");
+        getContentPane().add(txtUsuario);
+        txtUsuario.setBounds(120, 40, 59, 20);
 
-        textField5.setText("textField1");
-        getContentPane().add(textField5);
-        textField5.setBounds(140, 110, 60, 20);
+        jTextField4.setText("jTextField1");
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(120, 40, 59, 20);
 
-        textField6.setText("textField1");
-        getContentPane().add(textField6);
-        textField6.setBounds(310, 110, 60, 20);
+        txtApellidoP.setText("jTextField1");
+        getContentPane().add(txtApellidoP);
+        txtApellidoP.setBounds(300, 80, 59, 20);
 
-        textField7.setText("textField1");
-        getContentPane().add(textField7);
-        textField7.setBounds(310, 70, 60, 20);
+        txtEdad.setText("jTextField1");
+        getContentPane().add(txtEdad);
+        txtEdad.setBounds(300, 110, 59, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+                        try {
+				UsuariosVO objUsuario=new UsuariosVO();
+				//objUsuario.getUsuario(txtUsuario.getText());
+				objUsuario.setContrasena(txtcontrasena.getText());
+				objUsuario.setNombre(txtNombre.getText());
+				objUsuario.setApellidoP(txtApellidoP.getText());
+				objUsuario.setApellidoM(txtApellidoM.getText());
+                                objUsuario.setEdad(Integer.parseInt(txtEdad.getText()));
+                                objUsuario.setFechaRegistro(convertformato.FechaYHora());
+                                objUsuario.setActivo(jRBActivo.isSelected());
+                                objUsuario.setIdTipoUsuarioFK(Integer.parseInt(txttipousuario.getName()));
+				
+				//miCoordinador.registrarPersona(objUsuario);	
+                                
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null,"Error en el Ingreso de Datos","Error",JOptionPane.ERROR_MESSAGE);
+			}
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelaActionPerformed
+        this.dispose();;        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,25 +200,23 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private java.awt.TextField textField1;
-    private java.awt.TextField textField2;
-    private java.awt.TextField textField3;
-    private java.awt.TextField textField4;
-    private java.awt.TextField textField5;
-    private java.awt.TextField textField6;
-    private java.awt.TextField textField7;
-    private org.bolivia.combo.SComboBoxBlue tipoUs;
+    private javax.swing.JRadioButton jRBActivo;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtApellidoM;
+    private javax.swing.JTextField txtApellidoP;
+    private javax.swing.JButton txtCancela;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JPasswordField txtcontrasena;
+    private org.bolivia.combo.SComboBoxBlue txttipousuario;
     // End of variables declaration//GEN-END:variables
 }

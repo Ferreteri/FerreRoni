@@ -39,7 +39,11 @@ public class convertformato {
         }
     }
     
+    public static Date FechaYHora() 
+    {
+        java.util.Date fecha = new Date();
+        return fecha;
+    }
     
-     
-     
+      
 }
