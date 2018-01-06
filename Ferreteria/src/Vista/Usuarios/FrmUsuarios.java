@@ -5,6 +5,7 @@
  */
 package Vista.Usuarios;
 
+import Vista.MenuPrincipal.MenuPrincipal;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -34,6 +35,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
         btnAddRegistro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnreg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,20 +80,34 @@ public class FrmUsuarios extends javax.swing.JFrame {
         jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 
+        btnreg.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
+        btnreg.setText("Volver al Menu Principal");
+        btnreg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(332, 332, 332)
+                .addComponent(btnreg, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnreg)
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,6 +121,11 @@ public class FrmUsuarios extends javax.swing.JFrame {
                         objAdd.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddRegistroActionPerformed
+
+    private void btnregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
+    }//GEN-LAST:event_btnregActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +165,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddRegistro;
+    private javax.swing.JButton btnreg;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

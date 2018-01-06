@@ -6,7 +6,13 @@
 package Vista.MenuPrincipal;
 
 import Utilerias.EstatusInfo;
+import Vista.Productos.frmProductos;
+import Vista.Usuarios.FrmUsuarios;
+import Vista.Ventas.FrmVentas;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -48,9 +54,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BtnRegistrar = new javax.swing.JButton();
+        btnProd = new javax.swing.JButton();
+        btnVentas = new javax.swing.JButton();
         tipo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -71,25 +77,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(130, 20, 150, 24);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jButton1.setText("Registrar usuarios");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnRegistrar.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        BtnRegistrar.setText("Registrar usuarios");
+        BtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(0, 220, 160, 26);
+        getContentPane().add(BtnRegistrar);
+        BtnRegistrar.setBounds(0, 220, 160, 26);
 
-        jButton2.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jButton2.setText("Registrar productos ");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(170, 220, 160, 25);
+        btnProd.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnProd.setText("Registrar productos ");
+        btnProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnProd);
+        btnProd.setBounds(170, 220, 160, 25);
 
-        jButton4.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        jButton4.setText("Hacer ventas ");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(340, 220, 130, 26);
+        btnVentas.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnVentas.setText("Hacer ventas ");
+        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVentasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVentas);
+        btnVentas.setBounds(340, 220, 130, 26);
 
         tipo.setFont(new java.awt.Font("Dialog", 3, 18)); // NOI18N
         tipo.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +147,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nombre);
-        nombre.setBounds(440, 20, 201, 30);
+        nombre.setBounds(450, 20, 201, 30);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Imagenes/MenuPrincipal/menu.png"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -142,12 +158,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
-        System.exit(1);
+       int ce;
+        ce = JOptionPane.showConfirmDialog(this, "¿Esta apunto de abandonar el sistema desea continuar?","ADVERTENCIA" ,JOptionPane.YES_NO_OPTION);
+       if(ce==JOptionPane.YES_OPTION){
+           System.exit(1);
+       }
+        
     }//GEN-LAST:event_salirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        FrmUsuarios frame=new FrmUsuarios();frame.setVisible(true);this.setVisible(false);
+    }//GEN-LAST:event_BtnRegistrarActionPerformed
 
     private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
         // TODO add your handling code here:
@@ -158,6 +180,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
          
     }//GEN-LAST:event_nombreActionPerformed
+
+    private void btnProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdActionPerformed
+        // TODO add your handling code here:
+    frmProductos prod= new frmProductos();prod.setVisible(true);this.setVisible(false);
+    }//GEN-LAST:event_btnProdActionPerformed
+
+    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+        // TODO add your handling code here:
+        FrmVentas ventas= new FrmVentas();ventas.setVisible(true);this.setVisible(false);
+    }//GEN-LAST:event_btnVentasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,9 +227,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton BtnRegistrar;
+    private javax.swing.JButton btnProd;
+    private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

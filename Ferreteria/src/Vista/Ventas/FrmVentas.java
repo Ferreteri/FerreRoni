@@ -5,6 +5,8 @@
  */
 package Vista.Ventas;
 
+import Vista.MenuPrincipal.MenuPrincipal;
+
 /**
  *
  * @author sistema
@@ -16,6 +18,14 @@ public class FrmVentas extends javax.swing.JFrame {
      */
     public FrmVentas() {
         initComponents();
+       txtNO1.setEditable(false);
+       txtNO2.setEditable(false);
+       txtNO3.setEditable(false);
+       txtNO4.setEditable(false);
+       txtNO5.setEditable(false);
+       this.setSize(800, 400);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +37,118 @@ public class FrmVentas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNO1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtNO2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtNO3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtNO4 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtNO5 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(12, 118, 255, 27);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        jLabel1.setText("Ventas");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(345, 0, 119, 32);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel2.setText("Codigo de barras:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(24, 81, 154, 19);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel3.setText("Nombre:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(499, 81, 80, 19);
+        getContentPane().add(txtNO1);
+        txtNO1.setBounds(297, 118, 422, 27);
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel4.setText("Clave del producto:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(26, 168, 152, 19);
+        getContentPane().add(txtNO2);
+        txtNO2.setBounds(12, 199, 255, 25);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel5.setText("Descripcion:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(495, 168, 91, 19);
+        getContentPane().add(txtNO3);
+        txtNO3.setBounds(297, 199, 491, 25);
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel6.setText("Precio:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(65, 244, 61, 14);
+        getContentPane().add(txtNO4);
+        txtNO4.setBounds(29, 273, 135, 25);
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel7.setText("Total:");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(579, 242, 54, 19);
+        getContentPane().add(txtNO5);
+        txtNO5.setBounds(520, 273, 147, 25);
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(297, 242, 0, 0);
+
+        jButton1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jButton1.setText("Calcular");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(29, 340, 118, 29);
+
+        jButton2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jButton2.setText("Imprimir Ticket");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(281, 340, 165, 29);
+
+        jButton3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jButton3.setText("Volver al menu principal");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(573, 340, 199, 29);
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel9.setText("NO. Piezas:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(321, 242, 75, 19);
+        getContentPane().add(jTextField7);
+        jTextField7.setBounds(308, 273, 100, 25);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(0, 0, 800, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +186,25 @@ public class FrmVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtNO1;
+    private javax.swing.JTextField txtNO2;
+    private javax.swing.JTextField txtNO3;
+    private javax.swing.JTextField txtNO4;
+    private javax.swing.JTextField txtNO5;
     // End of variables declaration//GEN-END:variables
 }

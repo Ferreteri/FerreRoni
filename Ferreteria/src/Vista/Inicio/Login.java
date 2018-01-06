@@ -115,11 +115,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(usuario);
-        usuario.setBounds(60, 200, 240, 23);
+        usuario.setBounds(60, 200, 240, 21);
 
         contraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(contraseña);
-        contraseña.setBounds(60, 270, 240, 23);
+        contraseña.setBounds(60, 270, 240, 21);
 
         btnentrar.setText("Aceptar");
         btnentrar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnsalir);
-        btnsalir.setBounds(60, 310, 80, 40);
+        btnsalir.setBounds(60, 310, 100, 40);
 
         labelMetric3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelMetric3.setText("¡¡¡ bienvenido a Ferre Rony !!!");
