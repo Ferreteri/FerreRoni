@@ -184,7 +184,8 @@ public class Login extends javax.swing.JFrame {
                         MenuPrincipal mp = new MenuPrincipal();
                         JOptionPane.showMessageDialog(this, "BIENVENIDO: " + Validate.getNombre()+" "+Validate.getApellidoP(), "Administrador", 0,
                                 new ImageIcon(getClass().getResource("/Recursos/Imagenes/Inicio/Accept-Male-User.png")));
-                        //mp.userConect.setText(dato);
+                        mp.Nombre=Validate.getNombre();
+                        mp.IdTipoUsuarioFk=Validate.getIdTipoUsuarioFK();//mp.userConect.setText(dato);
                         mp.setVisible(true);
                  }
                  else

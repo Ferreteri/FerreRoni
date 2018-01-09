@@ -9,8 +9,8 @@ import Utilerias.EstatusInfo;
 import Vista.Productos.frmProductos;
 import Vista.Usuarios.FrmUsuarios;
 import Vista.Ventas.FrmVentas;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,6 +22,9 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    
+    public String Nombre;
+    public int IdTipoUsuarioFk;
     /**
      * Creates new form MenuPrincipal
      */
@@ -32,10 +35,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
        
-        if(1==EstatusInfo.TipoUsuario.Administrador.ordinal()){
+        if( IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Administrador.ordinal()){
           tipo.setText("ADMINISTRADOR");
           
-        } else if(2==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
+        } else if(IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
             tipo.setText("Usuario");
             
         }
