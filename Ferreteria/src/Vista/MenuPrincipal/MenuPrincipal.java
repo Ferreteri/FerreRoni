@@ -35,7 +35,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
        
-        if( IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Administrador.ordinal()){
+        if(IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Administrador.ordinal()){
           tipo.setText("ADMINISTRADOR");
           
         } else if(IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Vendedor.ordinal()){

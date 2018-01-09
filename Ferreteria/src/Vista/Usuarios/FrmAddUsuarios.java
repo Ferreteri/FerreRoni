@@ -98,8 +98,6 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
         jLabel7.setText("Edad");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(240, 110, 24, 15);
-
-        txtcontrasena.setText("jPasswordField1");
         getContentPane().add(txtcontrasena);
         txtcontrasena.setBounds(290, 40, 100, 19);
 
@@ -111,14 +109,13 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
         getContentPane().add(txtNombre);
         txtNombre.setBounds(130, 80, 55, 19);
 
-        txtUsuario.setText("jTextField1");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
             }
         });
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(120, 40, 55, 19);
+        txtUsuario.setBounds(120, 40, 4, 19);
 
         jTextField4.setText("jTextField1");
         getContentPane().add(jTextField4);
@@ -146,9 +143,8 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
 				objUsuario.setApellidoM(txtApellidoM.getText());
                                 objUsuario.setEdad(Integer.parseInt(txtEdad.getText()));
                                 objUsuario.setFechaRegistro(convertformato.FechaYHora());
-                                objUsuario.setActivo(jRBActivo.isSelected());
-                                objUsuario.setIdTipoUsuarioFK(Integer.parseInt(txttipousuario.getName()));
-				
+                                objUsuario.setActivo(jRBActivo.isSelected());/*cambie el txtUsuario porque estaba mal escrito*/
+                                objUsuario.setIdTipoUsuarioFK(Integer.parseInt(txtUsuario.getName()));				
 				//miCoordinador.registrarPersona(objUsuario);	
                                 
 			} catch (Exception ex) {
