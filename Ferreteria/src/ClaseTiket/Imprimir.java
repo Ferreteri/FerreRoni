@@ -1,6 +1,6 @@
 
 package ClaseTiket;
-
+import java.io.*;
 /**
  *
  * @author hpere
@@ -52,5 +52,6 @@ public class Imprimir {
 //
 //     
 //    }
+    
     
 }

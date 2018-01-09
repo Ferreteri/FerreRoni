@@ -54,6 +54,11 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jRBActivo.setText("Activo /Inactivo");
+        jRBActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBActivoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRBActivo);
         jRBActivo.setBounds(100, 170, 160, 23);
 
@@ -162,6 +167,10 @@ public class FrmAddUsuarios extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRBActivoActionPerformed
 
     /**
      * @param args the command line arguments
