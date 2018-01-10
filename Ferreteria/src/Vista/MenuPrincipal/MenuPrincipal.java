@@ -26,10 +26,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(int IdTipoUsuario,String Nombre) {
         
         initComponents();
-        CargaUsuario();
+        CargaUsuario(IdTipoUsuario,Nombre);
         this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/MenuPrincipal/menu.png")).getImage());
         this.setSize(640, 365);
         this.setResizable(false);
@@ -38,14 +38,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     
-    private void CargaUsuario()
+    private void CargaUsuario(int IdTipoUsuario,String Nombre)
     {
     
         
-        if(1==EstatusInfo.TipoUsuario.Administrador.ordinal()){
+        if(IdTipoUsuario==EstatusInfo.TipoUsuario.Administrador.ordinal()){
           tipo.setText("Administrador");
           
-        } else if(2==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
+        } else if(IdTipoUsuario==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
             tipo.setText("Usuario");
             
         }
@@ -234,7 +234,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new MenuPrincipal(0,"Null").setVisible(true);
             }
         });
     }

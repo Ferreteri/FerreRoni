@@ -124,7 +124,7 @@ public class FrmUsuarios extends javax.swing.JFrame {
 
     private void btnregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
+        //MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
     }//GEN-LAST:event_btnregActionPerformed
 
     /**

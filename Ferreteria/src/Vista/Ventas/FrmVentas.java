@@ -172,7 +172,7 @@ public class FrmVentas extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
+        //MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
         
     }//GEN-LAST:event_btnMenuActionPerformed
 
