@@ -5,6 +5,7 @@
  */
 package Vista.Ventas;
 
+import Modelo.LogicaProductos;
 import Vista.MenuPrincipal.MenuPrincipal;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -17,7 +18,7 @@ import static java.awt.print.Printable.PAGE_EXISTS;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import java.util.StringTokenizer;
-
+import Modelo.VO.ProductosVO;
 /**
  *
  * @author sistema
@@ -37,7 +38,7 @@ public class FrmVentas extends javax.swing.JFrame {
        txtNO2.setEditable(false);
        txtNO3.setEditable(false);
        txtNO4.setEditable(false);
-       txtNO5.setEditable(false);
+       txtNOVentas.setEditable(false);
        this.setSize(800, 400);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -52,7 +53,7 @@ public class FrmVentas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txtBarras = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,19 +65,21 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtNO4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNO5 = new javax.swing.JTextField();
+        txtNOVentas = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(12, 118, 255, 27);
+        getContentPane().add(txtBarras);
+        txtBarras.setBounds(12, 118, 255, 27);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setText("Ventas");
@@ -98,16 +101,16 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel4.setText("Clave del producto:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(26, 168, 152, 19);
+        jLabel4.setBounds(50, 190, 152, 19);
         getContentPane().add(txtNO2);
-        txtNO2.setBounds(12, 199, 255, 25);
+        txtNO2.setBounds(10, 210, 255, 25);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(495, 168, 91, 19);
         getContentPane().add(txtNO3);
-        txtNO3.setBounds(297, 199, 491, 25);
+        txtNO3.setBounds(300, 210, 491, 25);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel6.setText("Precio:");
@@ -121,13 +124,13 @@ public class FrmVentas extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(579, 242, 54, 19);
 
-        txtNO5.addActionListener(new java.awt.event.ActionListener() {
+        txtNOVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNO5ActionPerformed(evt);
+                txtNOVentasActionPerformed(evt);
             }
         });
-        getContentPane().add(txtNO5);
-        txtNO5.setBounds(520, 273, 147, 25);
+        getContentPane().add(txtNOVentas);
+        txtNOVentas.setBounds(520, 273, 147, 25);
         getContentPane().add(jLabel8);
         jLabel8.setBounds(297, 242, 0, 0);
 
@@ -163,9 +166,29 @@ public class FrmVentas extends javax.swing.JFrame {
         getContentPane().add(jTextField7);
         jTextField7.setBounds(308, 273, 100, 25);
 
+        btnBuscar.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar);
+        btnBuscar.setBounds(20, 150, 120, 26);
+
+        jButton1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jButton1.setText("Borrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(160, 150, 100, 25);
+
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, 0, 800, 400);
+        jLabel10.setBounds(0, 0, 830, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,9 +205,25 @@ public class FrmVentas extends javax.swing.JFrame {
          pagination.imprimirnomina();
     }//GEN-LAST:event_btnImprimirActionPerformed
 
-    private void txtNO5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNO5ActionPerformed
+    private void txtNOVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNOVentasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNO5ActionPerformed
+    }//GEN-LAST:event_txtNOVentasActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        
+      LogicaProductos productos=new LogicaProductos();      // TODO add your handling code here:
+       
+        ProductosVO variables=  productos.BuscarCodigoBarras(txtBarras.getText());
+        txtNO1.setText(variables.getNombre());
+        txtNO2.setText(variables.getClaveProducto());
+        txtNO3.setText(variables.getDescripcion());
+       // txtNO4.setText(variables.getPrecioPublico());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        txtBarras.setText("");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +262,7 @@ public class FrmVentas extends javax.swing.JFrame {
 public class PaginationExample implements Printable{
        //Se obtienen las lineas de texto de los campos, la linea de texto finaliza cuando se encuentra el caracter de nueva linea \n
      
-       StringTokenizer lineasdetexto = new StringTokenizer(txtNO5.getText(), "\n", true);
+       StringTokenizer lineasdetexto = new StringTokenizer(txtNOVentas.getText(), "\n", true);
        
        //Se obtiene el total de lineas de texto
        int totallineas = lineasdetexto.countTokens();
@@ -311,9 +350,11 @@ public class PaginationExample implements Printable{
     }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnMenu;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -324,12 +365,12 @@ public class PaginationExample implements Printable{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtBarras;
     private javax.swing.JTextField txtNO1;
     private javax.swing.JTextField txtNO2;
     private javax.swing.JTextField txtNO3;
     private javax.swing.JTextField txtNO4;
-    public javax.swing.JTextField txtNO5;
+    public javax.swing.JTextField txtNOVentas;
     // End of variables declaration//GEN-END:variables
 }
