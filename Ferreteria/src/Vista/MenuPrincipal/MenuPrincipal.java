@@ -22,23 +22,30 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    
-    public String Nombre;
-    public int IdTipoUsuarioFk;
+  
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
+        
         initComponents();
+        CargaUsuario();
         this.setIconImage(new ImageIcon(getClass().getResource("/Recursos/Imagenes/MenuPrincipal/menu.png")).getImage());
         this.setSize(640, 365);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-       
-        if(IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Administrador.ordinal()){
-          tipo.setText("ADMINISTRADOR");
+        
+    }
+
+    
+    private void CargaUsuario()
+    {
+    
+        
+        if(1==EstatusInfo.TipoUsuario.Administrador.ordinal()){
+          tipo.setText("Administrador");
           
-        } else if(IdTipoUsuarioFk==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
+        } else if(2==EstatusInfo.TipoUsuario.Vendedor.ordinal()){
             tipo.setText("Usuario");
             
         }
@@ -46,7 +53,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         nombre.setEditable(false);
         tipo.setEditable(false);
     }
-
+    
+    
+      
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -6,12 +6,27 @@
 package Vista.Ventas;
 
 import Vista.MenuPrincipal.MenuPrincipal;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.util.StringTokenizer;
 
 /**
  *
  * @author sistema
  */
 public class FrmVentas extends javax.swing.JFrame {
+
+    public static String getText() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Creates new form FrmVentas
@@ -51,9 +66,9 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtNO5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -105,30 +120,41 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel7.setText("Total:");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(579, 242, 54, 19);
+
+        txtNO5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNO5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtNO5);
         txtNO5.setBounds(520, 273, 147, 25);
         getContentPane().add(jLabel8);
         jLabel8.setBounds(297, 242, 0, 0);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jButton1.setText("Calcular");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(29, 340, 118, 29);
+        btnCalcular.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        btnCalcular.setText("Calcular");
+        getContentPane().add(btnCalcular);
+        btnCalcular.setBounds(29, 340, 118, 29);
 
-        jButton2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jButton2.setText("Imprimir Ticket");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(281, 340, 165, 29);
-
-        jButton3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jButton3.setText("Volver al menu principal");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        btnImprimir.setText("Imprimir Ticket");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnImprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(573, 340, 199, 29);
+        getContentPane().add(btnImprimir);
+        btnImprimir.setBounds(281, 340, 165, 29);
+
+        btnMenu.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        btnMenu.setText("Volver al menu principal");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnMenu);
+        btnMenu.setBounds(573, 340, 199, 29);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel9.setText("NO. Piezas:");
@@ -144,11 +170,21 @@ public class FrmVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        PaginationExample pagination = new PaginationExample();
+         pagination.imprimirnomina();
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void txtNO5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNO5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNO5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +220,100 @@ public class FrmVentas extends javax.swing.JFrame {
             }
         });
     }
+public class PaginationExample implements Printable{
+       //Se obtienen las lineas de texto de los campos, la linea de texto finaliza cuando se encuentra el caracter de nueva linea \n
+     
+       StringTokenizer lineasdetexto = new StringTokenizer(txtNO5.getText(), "\n", true);
+       
+       //Se obtiene el total de lineas de texto
+       int totallineas = lineasdetexto.countTokens();
+       
+    int[] paginas;  // Arreglo de número de paginas que se necesitaran para imprimir todo el texto 
 
+    String[] textoLineas; //Lineas de texto que se imprimiran en cada hoja
+
+    //Metodo que se crea por default cuando una clase implementa a Printable
+    public int print(Graphics g, PageFormat pf, int pageIndex)
+             throws PrinterException {
+        //Se establece la fuente, el tipo, el tamaño, la metrica según la fuente asignada, 
+        //obtiene la altura de cada linea de texto para que todas queden iguales
+        Font font = new Font("Serif", Font.PLAIN, 8);
+        FontMetrics metrics = g.getFontMetrics(font);
+        int altodelinea = metrics.getHeight();
+        //Calcula el número de lineas por pagina y el total de paginas
+        if (paginas == null) {
+            initTextoLineas();
+            //Calcula las lineas que le caben a cada página dividiendo la altura imprimible entre la altura de la linea de texto
+            int lineasPorPagina = (int)(pf.getImageableHeight()/altodelinea);
+            //Calcula el numero de páginas dividiendo el total de lineas entre el numero de lineas por página
+            int numeroPaginas = (textoLineas.length-1)/lineasPorPagina;
+            paginas = new int[numeroPaginas];
+            for (int b=0; b<numeroPaginas; b++) {
+                paginas[b] = (b+1)*lineasPorPagina; 
+            }
+        }
+        //Si se recibe un indice de página mayor que el total de páginas calculadas entonces 
+        //retorna NO_SUCH_PAGE para indicar que tal pagina no existe 
+        if (pageIndex > paginas.length) {
+            return NO_SUCH_PAGE;
+        }
+        /*Por lo regular cuando dibujamos algun objeto lo coloca en la coordenada (0,0), esta coordenada 
+         * se encuentra fuera del área imprimible, por tal motivo se debe trasladar la posicion de las lineas de texto
+         * según el área imprimible del eje X y el eje Y 
+         */
+        
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.translate(pf.getImageableX(), pf.getImageableY());
+        /*Dibujamos cada línea de texto en cada página,
+         * se aumenta a la posición 'y' la altura de la línea a cada línea de texto para evitar la saturación de texto 
+         */
+
+        int y = 0; 
+        int start = (pageIndex == 0) ? 0 : paginas[pageIndex-1];
+        int end   = (pageIndex == paginas.length) ? textoLineas.length : paginas[pageIndex];
+        for (int line=start; line<end; line++) {
+            y += altodelinea;
+            g.drawString(textoLineas[line], 0, y);
+        }
+        /* Retorna PAGE_EXISTS para indicar al invocador que esta página es parte del documento impreso
+         */
+        return PAGE_EXISTS;
+    }
+    
+     /* Agrega las lineas de texto al arreglo */
+    public void initTextoLineas() {
+        if (textoLineas == null) {
+            int numLineas=totallineas;
+            textoLineas = new String[numLineas];
+            //Se llena el arreglo que contiene todas las lineas de texto
+            while(lineasdetexto.hasMoreTokens()){
+            for (int i=0;i<numLineas;i++) {
+                textoLineas[i] = lineasdetexto.nextToken();
+            }
+            }
+        }
+    }
+    
+    //Este metodo crea un objeto Printerjob el cual es inicializado y asociado con la impresora por default
+    public void imprimirnomina() {
+         PrinterJob job = PrinterJob.getPrinterJob();
+         job.setPrintable(this);
+         //Si el usuario presiona imprimir en el dialogo de impresión, 
+         //entonces intenta imprimir todas las lineas de texto
+         boolean ok = job.printDialog();
+         if (ok) {
+             try {
+                  job.print();
+             } catch (PrinterException ex) {
+              /* The job did not successfully complete */
+             }
+         }
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -205,6 +330,6 @@ public class FrmVentas extends javax.swing.JFrame {
     private javax.swing.JTextField txtNO2;
     private javax.swing.JTextField txtNO3;
     private javax.swing.JTextField txtNO4;
-    private javax.swing.JTextField txtNO5;
+    public javax.swing.JTextField txtNO5;
     // End of variables declaration//GEN-END:variables
 }
