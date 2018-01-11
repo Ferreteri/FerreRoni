@@ -39,13 +39,13 @@ public ProductosVO buscarProducto(String CodigoBarras)
 				Productos.setClaveProducto(res.getString("ClaveProducto"));
                                 Productos.setNombre(res.getString("Nombre"));
                                 Productos.setDescripcion(res.getString("Descripcion"));
-//                                Productos.setExistencia(res.getFloat("Existencia"));
-//                                Productos.setPrecioCompra(res.getDouble("PrecioCompra"));
-//                                Productos.setPrecioCompraMayoreo(Double.parseDouble(res.getString("PrecioCompraMayoreo")));
-//                                Productos.setPrecioPublico(Double.parseDouble(res.getString("PrecioPublico")));
-//                                Productos.setPrecioMayoreoPublico(Double.parseDouble(res.getString("PrecioMayoreoPublico")));
-//                                Productos.setFechaRegistro(res.getDate("FechaRegistro"));
-//                                Productos.setActivo(res.getBoolean("Activo"));
+                                Productos.setExistencia(res.getDouble("Exixtencia"));
+                                Productos.setPrecioCompra(res.getDouble("PrecioCompra"));
+                                Productos.setPrecioCompraMayoreo(res.getDouble("PrecioCompraMayoreo"));
+                                Productos.setPrecioPublico(res.getDouble("PrecioPublico"));
+                                Productos.setPrecioMayoreoPublico(res.getDouble("PrecioMayoreoPublico"));
+                                Productos.setFechaRegistro(res.getDate("Fecha_Registro"));
+                                Productos.setActivo(res.getBoolean("Activo"));
                               
 			 }
 			res.close();

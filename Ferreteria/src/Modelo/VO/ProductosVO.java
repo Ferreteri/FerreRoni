@@ -18,7 +18,7 @@ public class ProductosVO {
     private String ClaveProducto;
     private String Nombre;
     private String Descripcion;
-    private Float Existencia;
+    private Double Existencia;
     private Double PrecioCompra;
     private Double PrecioCompraMayoreo;
     private Double PrecioPublico;
@@ -74,11 +74,11 @@ public class ProductosVO {
         this.Descripcion = Descripcion;
     }
 
-    public Float getExistencia() {
+    public Double getExistencia() {
         return Existencia;
     }
 
-    public void setExistencia(Float Existencia) {
+    public void setExistencia(Double Existencia) {
         this.Existencia = Existencia;
     }
 
