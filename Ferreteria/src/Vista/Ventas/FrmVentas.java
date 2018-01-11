@@ -226,6 +226,7 @@ public class FrmVentas extends javax.swing.JFrame {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         //MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
+        // faltara que mande los datos;
          int ce;
         ce = JOptionPane.showConfirmDialog(this, "¿Esta apunto de abandonar el sistema desea continuar?","ADVERTENCIA" ,JOptionPane.YES_NO_OPTION);
        if(ce==JOptionPane.YES_OPTION){
