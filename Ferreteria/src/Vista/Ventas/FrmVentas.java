@@ -5,20 +5,12 @@
  */
 package Vista.Ventas;
 
+
+import FrmTicket.imprimir;
 import Modelo.LogicaProductos;
-import Vista.MenuPrincipal.MenuPrincipal;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import static java.awt.print.Printable.NO_SUCH_PAGE;
-import static java.awt.print.Printable.PAGE_EXISTS;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.util.StringTokenizer;
+
 import Modelo.VO.ProductosVO;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sistema
@@ -34,12 +26,12 @@ public class FrmVentas extends javax.swing.JFrame {
      */
     public FrmVentas() {
         initComponents();
-       txtNO1.setEditable(false);
-       txtNO2.setEditable(false);
-       txtNO3.setEditable(false);
+       txtNombre.setEditable(false);
+       txtClave.setEditable(false);
+       txtDescripcion.setEditable(false);
        txtNO4.setEditable(false);
        txtNOVentas.setEditable(false);
-       this.setSize(800, 400);
+       this.setSize(845, 570);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -57,29 +49,34 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtNO1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtNO2 = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtNO3 = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNO4 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtNOVentas = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnMenu = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         getContentPane().add(txtBarras);
-        txtBarras.setBounds(12, 118, 255, 27);
+        txtBarras.setBounds(20, 50, 255, 27);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         jLabel1.setText("Ventas");
@@ -89,40 +86,42 @@ public class FrmVentas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel2.setText("Codigo de barras:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(24, 81, 154, 19);
+        jLabel2.setBounds(50, 20, 154, 19);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel3.setText("Nombre:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(499, 81, 80, 19);
-        getContentPane().add(txtNO1);
-        txtNO1.setBounds(297, 118, 422, 27);
+        jLabel3.setBounds(90, 250, 80, 19);
+        getContentPane().add(txtNombre);
+        txtNombre.setBounds(10, 280, 422, 27);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel4.setText("Clave del producto:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(50, 190, 152, 19);
-        getContentPane().add(txtNO2);
-        txtNO2.setBounds(10, 210, 255, 25);
+        jLabel4.setBounds(50, 170, 152, 19);
+        getContentPane().add(txtClave);
+        txtClave.setBounds(20, 200, 255, 25);
 
         jLabel5.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel5.setText("Descripcion:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(495, 168, 91, 19);
-        getContentPane().add(txtNO3);
-        txtNO3.setBounds(300, 210, 491, 25);
+        jLabel5.setBounds(70, 320, 91, 19);
+
+        txtDescripcion.setFont(new java.awt.Font("Dialog", 3, 8)); // NOI18N
+        getContentPane().add(txtDescripcion);
+        txtDescripcion.setBounds(10, 350, 420, 25);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel6.setText("Precio:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(65, 244, 61, 14);
+        jLabel6.setBounds(20, 430, 61, 14);
         getContentPane().add(txtNO4);
-        txtNO4.setBounds(29, 273, 135, 25);
+        txtNO4.setBounds(90, 430, 135, 25);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel7.setText("Total:");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(579, 242, 54, 19);
+        jLabel7.setBounds(470, 470, 54, 19);
 
         txtNOVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,14 +129,12 @@ public class FrmVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtNOVentas);
-        txtNOVentas.setBounds(520, 273, 147, 25);
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(297, 242, 0, 0);
+        txtNOVentas.setBounds(530, 470, 160, 25);
 
         btnCalcular.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         btnCalcular.setText("Calcular");
         getContentPane().add(btnCalcular);
-        btnCalcular.setBounds(29, 340, 118, 29);
+        btnCalcular.setBounds(10, 460, 118, 29);
 
         btnImprimir.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         btnImprimir.setText("Imprimir Ticket");
@@ -147,34 +144,24 @@ public class FrmVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnImprimir);
-        btnImprimir.setBounds(281, 340, 165, 29);
+        btnImprimir.setBounds(280, 460, 165, 29);
 
         btnMenu.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        btnMenu.setText("Volver al menu principal");
+        btnMenu.setText("Salir");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMenuActionPerformed(evt);
             }
         });
         getContentPane().add(btnMenu);
-        btnMenu.setBounds(573, 340, 199, 29);
+        btnMenu.setBounds(770, 460, 65, 29);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jLabel9.setText("NO. Piezas:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(321, 242, 75, 19);
+        jLabel9.setBounds(270, 430, 75, 19);
         getContentPane().add(jTextField7);
-        jTextField7.setBounds(308, 273, 100, 25);
-
-        btnBuscar.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBuscar);
-        btnBuscar.setBounds(20, 150, 120, 26);
+        jTextField7.setBounds(360, 430, 100, 25);
 
         jButton1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jButton1.setText("Borrar");
@@ -184,11 +171,54 @@ public class FrmVentas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(160, 150, 100, 25);
+        jButton1.setBounds(270, 120, 100, 25);
+
+        jToggleButton1.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jToggleButton1.setText("Seleccionar");
+        getContentPane().add(jToggleButton1);
+        jToggleButton1.setBounds(140, 120, 102, 26);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Codigo de barras", "Nombre", "Precio", "Cantidad"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(433, 30, 430, 400);
+
+        jToggleButton2.setText("Buscar");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton2);
+        jToggleButton2.setBounds(30, 120, 69, 25);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(70, 0, 810, 400);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, 0, 830, 400);
+        jLabel10.setBounds(0, -10, 70, 420);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
+        jLabel11.setText("jLabel11");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, 370, 440, 430);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Ventas/ventas.png"))); // NOI18N
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(440, 361, 430, 470);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,34 +226,37 @@ public class FrmVentas extends javax.swing.JFrame {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         //MenuPrincipal menu= new MenuPrincipal();menu.setVisible(true);this.setVisible(false);
-        
+         int ce;
+        ce = JOptionPane.showConfirmDialog(this, "¿Esta apunto de abandonar el sistema desea continuar?","ADVERTENCIA" ,JOptionPane.YES_NO_OPTION);
+       if(ce==JOptionPane.YES_OPTION){
+           System.exit(1);
+       }
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         // TODO add your handling code here:
-        PaginationExample pagination = new PaginationExample();
-         pagination.imprimirnomina();
+         int ce;
+        ce = JOptionPane.showConfirmDialog(this, "¿Esto es para confirmar su compra desea continuar ?","ADVERTENCIA" ,JOptionPane.YES_NO_OPTION);
+       if(ce==JOptionPane.YES_OPTION){
+           imprimir ventas= new imprimir();ventas.setVisible(true);this.setVisible(false);
+       }
+        
+         
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void txtNOVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNOVentasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNOVentasActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-      LogicaProductos productos=new LogicaProductos();      // TODO add your handling code here:
-       
-        ProductosVO variables=  productos.BuscarCodigoBarras(txtBarras.getText());
-        txtNO1.setText(variables.getNombre());
-        txtNO2.setText(variables.getClaveProducto());
-        txtNO3.setText(variables.getDescripcion());
-       // txtNO4.setText(variables.getPrecioPublico());
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         txtBarras.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here: 
+        
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,104 +292,17 @@ public class FrmVentas extends javax.swing.JFrame {
             }
         });
     }
-public class PaginationExample implements Printable{
-       //Se obtienen las lineas de texto de los campos, la linea de texto finaliza cuando se encuentra el caracter de nueva linea \n
-     
-       StringTokenizer lineasdetexto = new StringTokenizer(txtNOVentas.getText(), "\n", true);
-       
-       //Se obtiene el total de lineas de texto
-       int totallineas = lineasdetexto.countTokens();
-       
-    int[] paginas;  // Arreglo de número de paginas que se necesitaran para imprimir todo el texto 
 
-    String[] textoLineas; //Lineas de texto que se imprimiran en cada hoja
 
-    //Metodo que se crea por default cuando una clase implementa a Printable
-    public int print(Graphics g, PageFormat pf, int pageIndex)
-             throws PrinterException {
-        //Se establece la fuente, el tipo, el tamaño, la metrica según la fuente asignada, 
-        //obtiene la altura de cada linea de texto para que todas queden iguales
-        Font font = new Font("Serif", Font.PLAIN, 8);
-        FontMetrics metrics = g.getFontMetrics(font);
-        int altodelinea = metrics.getHeight();
-        //Calcula el número de lineas por pagina y el total de paginas
-        if (paginas == null) {
-            initTextoLineas();
-            //Calcula las lineas que le caben a cada página dividiendo la altura imprimible entre la altura de la linea de texto
-            int lineasPorPagina = (int)(pf.getImageableHeight()/altodelinea);
-            //Calcula el numero de páginas dividiendo el total de lineas entre el numero de lineas por página
-            int numeroPaginas = (textoLineas.length-1)/lineasPorPagina;
-            paginas = new int[numeroPaginas];
-            for (int b=0; b<numeroPaginas; b++) {
-                paginas[b] = (b+1)*lineasPorPagina; 
-            }
-        }
-        //Si se recibe un indice de página mayor que el total de páginas calculadas entonces 
-        //retorna NO_SUCH_PAGE para indicar que tal pagina no existe 
-        if (pageIndex > paginas.length) {
-            return NO_SUCH_PAGE;
-        }
-        /*Por lo regular cuando dibujamos algun objeto lo coloca en la coordenada (0,0), esta coordenada 
-         * se encuentra fuera del área imprimible, por tal motivo se debe trasladar la posicion de las lineas de texto
-         * según el área imprimible del eje X y el eje Y 
-         */
-        
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.translate(pf.getImageableX(), pf.getImageableY());
-        /*Dibujamos cada línea de texto en cada página,
-         * se aumenta a la posición 'y' la altura de la línea a cada línea de texto para evitar la saturación de texto 
-         */
-
-        int y = 0; 
-        int start = (pageIndex == 0) ? 0 : paginas[pageIndex-1];
-        int end   = (pageIndex == paginas.length) ? textoLineas.length : paginas[pageIndex];
-        for (int line=start; line<end; line++) {
-            y += altodelinea;
-            g.drawString(textoLineas[line], 0, y);
-        }
-        /* Retorna PAGE_EXISTS para indicar al invocador que esta página es parte del documento impreso
-         */
-        return PAGE_EXISTS;
-    }
-    
-     /* Agrega las lineas de texto al arreglo */
-    public void initTextoLineas() {
-        if (textoLineas == null) {
-            int numLineas=totallineas;
-            textoLineas = new String[numLineas];
-            //Se llena el arreglo que contiene todas las lineas de texto
-            while(lineasdetexto.hasMoreTokens()){
-            for (int i=0;i<numLineas;i++) {
-                textoLineas[i] = lineasdetexto.nextToken();
-            }
-            }
-        }
-    }
-    
-    //Este metodo crea un objeto Printerjob el cual es inicializado y asociado con la impresora por default
-    public void imprimirnomina() {
-         PrinterJob job = PrinterJob.getPrinterJob();
-         job.setPrintable(this);
-         //Si el usuario presiona imprimir en el dialogo de impresión, 
-         //entonces intenta imprimir todas las lineas de texto
-         boolean ok = job.printDialog();
-         if (ok) {
-             try {
-                  job.print();
-             } catch (PrinterException ex) {
-              /* The job did not successfully complete */
-             }
-         }
-    }
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -365,12 +311,16 @@ public class PaginationExample implements Printable{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTextField txtBarras;
-    private javax.swing.JTextField txtNO1;
-    private javax.swing.JTextField txtNO2;
-    private javax.swing.JTextField txtNO3;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtNO4;
     public javax.swing.JTextField txtNOVentas;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
